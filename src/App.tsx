@@ -1,25 +1,31 @@
+// src/App.tsx
+
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
-import "./styles/App.sass";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import Header from "./components/Header";
+import "./styles/index.sass";
+import ProductListPage from "./pages/ProductsListPage";
 
-function App() {
+import AdminPage from "./pages/AdminPage";
+import LoginPage from "./pages/LoginPage";
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductListPage />} />
+        <Route path="/products/:productId" element={<ProductDetailPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        {/* Adicione mais rotas conforme necessário */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

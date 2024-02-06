@@ -1,0 +1,26 @@
+// Definindo variáveis (ajuste conforme necessário)
+$font-secondary: 'Arial', sans-serif // Substitua por sua fonte secundária, se houver
+$text-color: #EAEAEA // Cor do texto padrão
+$primary-color: #D77F33 // Cor primária, ajuste conforme necessário
+$card-background: #20170E // Cor de fundo dos cartões, ajuste conforme necessário
+
+// Reset básico
+*,
+*::before,
+*::after
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+body
+  line-height: 1.6
+  background-color: #20170E // Usando a cor de fundo dos cartões para o corpo
+  font-family: $font-secondary
+  color: $text-color
+  margin: 0
+  padding: 0
+
+a
+  color: $primary-color
+  &:hover
+    color: darken($primary-color, 10%)

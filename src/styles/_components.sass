@@ -1,0 +1,102 @@
+// Definindo variáveis para reutilização
+$border-radius: 10px
+$padding-small: 10px
+$padding-medium: 20px
+$border-radius-small: 5px
+$max-image-size: 200px
+$card-background: #2C2116
+$border-color: #D77F33
+$text-color: #EAEAEA
+$button-hover-bg: lighten($border-color, 10%)
+$grid-gap: 20px
+
+// Estilizando a lista de produtos
+.product-list
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
+  grid-gap: $grid-gap
+  padding: $grid-gap
+
+  @media (min-width: 1200px)
+    grid-template-columns: repeat(4, 1fr)
+
+  @media (max-width: 991px)
+    grid-template-columns: repeat(3, 1fr)
+
+  @media (max-width: 767px)
+    grid-template-columns: repeat(2, 1fr)
+
+  @media (max-width: 575px)
+    grid-template-columns: 1fr
+
+// Estilizando o cartão do produto
+.product-card
+  display: flex
+  flex-direction: column
+  align-items: center
+  text-align: center
+  background-color: $card-background
+  border: 2px solid $border-color
+  border-radius: $border-radius
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out
+  margin: $padding-small
+  padding: $padding-small
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+
+  &:hover
+    transform: scale(1.05)
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2)
+
+  .product-image
+    max-width: $max-image-size
+    max-height: $max-image-size
+    width: auto
+    height: auto
+    border-top-left-radius: $border-radius
+    border-top-right-radius: $border-radius
+
+  .product-info
+    margin-top: $padding-small
+
+    h3, .product-description
+      color: $text-color
+      font-family: 'YourFontFamily', sans-serif
+
+    h3
+      margin-bottom: $padding-small
+      font-size: 1.4rem
+
+    .product-description
+      margin-bottom: $padding-small
+
+// Estilizando o botão "Detalhes" e o preço
+.details-price-container
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+
+.view-ingredients-btn
+  background-color: transparent
+  border: 1px solid $border-color
+  border-radius: $border-radius-small
+  cursor: pointer
+  color: $text-color
+  font-family: 'YourFontFamily', sans-serif
+  font-size: 1rem
+  padding: $padding-small
+ 
+  transition: background-color 0.2s ease-in-out
+
+  &:hover
+    background-color: #D77F33
+    color: $card-background
+
+.product-price
+  background-color: #F3DFA0
+  border-radius: $border-radius-small
+  padding: $padding-small
+  margin-left: $padding-small
+  p
+    color: #2C2116
+    font-wheight: 800

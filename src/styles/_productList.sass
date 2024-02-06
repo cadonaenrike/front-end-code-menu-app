@@ -1,0 +1,75 @@
+$border-radius: 10px
+$padding-small: 10px
+$padding-medium: 20px
+$grid-gap: 20px
+$text-color: #EAEAEA
+$error-color: #FF0000
+$loading-color: #FFFFFF
+$button-bg-color: #F3DFA0 
+$font-title-size: 32px
+$font-title-weight: 400
+$font-title-family: 'Bebas Neue', sans-serif
+
+// Importação da fonte 'Bebas Neue'
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap')
+
+// Estilização da página de lista de produtos
+.product-list-page
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  text-align: center
+  width: 100%
+
+  // Estilizando o título
+  h2
+    color: $text-color
+    font-size: $font-title-size
+    font-weight: $font-title-weight
+    font-family: $font-title-family
+    margin: $padding-medium 0
+    padding-left: $padding-medium
+
+  // Estilizando os botões de categoria
+  .category-buttons
+    display: flex
+    align-self: center
+    flex-wrap: wrap
+    gap: $padding-small // Espaçamento entre os botões
+    margin-bottom: $padding-medium
+
+    button
+      font-size: 22px
+      font-weight: $font-title-weight
+      font-family: $font-title-family
+      background-color: $button-bg-color
+      color: $card-background
+      border: none
+      border-radius: $border-radius
+      padding: $padding-small $padding-medium
+      cursor: pointer
+      transition: background-color 0.2s
+
+      &:hover
+        background-color: #D77F33
+
+// Estilização da lista de produtos
+.product-list
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
+  grid-gap: $grid-gap
+  justify-content: center
+  width: 70%
+  margin: auto
+
+// Estilização para a mensagem de carregamento
+.loading-message
+  color: $loading-color
+  text-align: center
+  padding: $padding-medium
+
+// Estilização para a mensagem de erro
+.error-message
+  color: $error-color
+  text-align: center
+  padding: $padding-medium
