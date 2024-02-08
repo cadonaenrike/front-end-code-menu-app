@@ -1,14 +1,17 @@
 import axios from "./axiosConfig";
-
 interface LoginResponse {
-  token: string;
+  accessToken: string | null;
+  message?: string;
 }
 
 const login = async (
-  username: string,
+  email: string,
   password: string
 ): Promise<LoginResponse> => {
-  const response = await axios.post("/auth/login", { username, password });
+  const response = await axios.post("/auth/login", {
+    email: email,
+    password: password,
+  });
   return response.data;
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/index.sass"; // Certifique-se de que este caminho está correto
+import "../styles/index.sass";
 import logo from "../images/logo.png";
 const Header: React.FC = () => {
   return (
@@ -18,8 +18,6 @@ const Header: React.FC = () => {
           <Link to="/login" className="admin-link">
             Administração
           </Link>
-
-          {/* Adicione mais links conforme necessário */}
         </nav>
       </div>
     </header>

@@ -3,6 +3,7 @@
 $font-title-family: 'Bebas Neue', sans-serif
 $text-color: #F3DFA0
 $font-title-size: 36px
+$padding-small: 10px
 
 .header
   display: flex
@@ -33,15 +34,27 @@ $font-title-size: 36px
       margin-left: $padding-small
 
   nav
+    display: flex
+    align-items: center
+
     a
       color: $text-color
-      color: $text-color
       font-family: $font-title-family
-      
-      font-size: 30px
+      font-size: 20px
       text-decoration: none
-      padding: 15px
+      padding: 0 10px
 
       &:hover
         text-decoration: underline
-s
+
+  // Estilos para tornar o cabeçalho responsivo
+  @media screen and (max-width: 768px)
+    .brand
+      h1
+        font-size: 24px
+
+    nav
+      flex-direction: column
+
+      a
+        padding: 10px 0

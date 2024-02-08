@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchProducts } from "../services/productService";
-import { fetchCategories } from "../services/categoryService"; // Importe sua função fetchCategories
+import { fetchCategories } from "../services/categoryService";
 import ProductCard from "./ProductCard";
 import "../styles/index.sass";
 import { Product, Category } from "../types/Product";
@@ -30,8 +30,14 @@ const ProductList: React.FC = () => {
     loadData();
   }, []);
 
-  const filterProducts = selectedCategory
-    ? products.filter((product) => product.category_id === selectedCategory)
+  const handleCategoryClick = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+  };
+
+  const filteredProducts = selectedCategory
+    ? products.filter((product) =>
+        product.categories?.some((category) => category.id === selectedCategory)
+      )
     : products;
 
   if (loading) return <div>Carregando...</div>;
@@ -48,18 +54,24 @@ const ProductList: React.FC = () => {
   return (
     <div className="product-list-page">
       <div className="category-buttons">
-        <button onClick={() => setSelectedCategory(null)}>Todos</button>
+        <button
+          className="btnCategory"
+          onClick={() => setSelectedCategory(null)}
+        >
+          Todos
+        </button>
         {categories.map((category) => (
           <button
+            className="btnCategory"
             key={category.id}
-            onClick={() => setSelectedCategory(category.name)}
+            onClick={() => handleCategoryClick(category.id)}
           >
             {category.name}
           </button>
         ))}
       </div>
       <div className="product-list">
-        {filterProducts.map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

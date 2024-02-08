@@ -1,11 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/index.sass";
-import { Product } from "../types/Product";
-
-interface ProductCardProps {
-  product: Product;
-}
+import { ProductCardProps } from "../types/Product";
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const navigate = useNavigate();
@@ -20,10 +16,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="product-info">
         <h3>{product.name}</h3>
         <p className="product-description">{product.description}</p>
-        {/* Novo contêiner para botão e preço */}
         <div className="details-price-container">
           <button className="view-ingredients-btn" onClick={handleViewDetails}>
-            + Detalhes
+            Detalhes
           </button>
           <div className="product-price">
             <p>R$ {product.price}</p>

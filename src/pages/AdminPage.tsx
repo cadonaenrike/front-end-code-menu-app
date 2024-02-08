@@ -1,34 +1,32 @@
-// src/pages/AdminPage.tsx
-import React, { useState } from "react";
-import "../styles/_adminPage.sass";
-import { Product } from "../types/Product";
-import ProductForm from "../components/ProductForm";
-import ProductListAdmin from "../components/ProductListAdmin";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import AdminProductList from "../components/ProductListAdmin";
+import "../styles/index.sass";
 
 const AdminPage: React.FC = () => {
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <div className="admin-page">
-      <h2>Gerenciamento do Cardápio da Hamburgueria</h2>
-      <div className="admin-content">
-        {editingProduct ? (
-          <ProductForm
-            product={editingProduct}
-            onSave={() => setEditingProduct(null)}
-          />
-        ) : (
-          <>
-            <button
-              className="add-product-btn"
-              onClick={() => setEditingProduct({} as Product)}
-            >
-              Adicionar Novo Hambúrguer
-            </button>
-            <ProductListAdmin onEdit={setEditingProduct} />
-          </>
-        )}
+      <div className="header-admin-page">
+        <h2>Gerenciador de Produtos</h2>
+        <button className="logout-button" onClick={handleLogout}>
+          Sair
+        </button>
       </div>
+      <AdminProductList />
     </div>
   );
 };

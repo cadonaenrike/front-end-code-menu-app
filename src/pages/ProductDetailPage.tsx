@@ -1,9 +1,8 @@
-// src/pages/ProductDetailPage.tsx
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProductById } from "../services/productService";
 import { Product } from "../types/Product";
+import "../styles/index.sass"; // Importando o arquivo SASS
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -13,15 +12,15 @@ const ProductDetailPage: React.FC = () => {
 
   useEffect(() => {
     if (productId) {
-      // Verifica se `productId` não é `undefined`
       const loadProductDetails = async () => {
         try {
           setLoading(true);
-          const productDetails = await fetchProductById(productId); // `productId` é garantido ser uma string aqui
+          const productDetails = await fetchProductById(productId);
+          console.log(productDetails);
           setProduct(productDetails);
         } catch (err) {
           setError("Falha ao buscar detalhes do produto");
-          console.error(err); // Para fins de debug
+          console.error(err);
         } finally {
           setLoading(false);
         }
@@ -31,18 +30,31 @@ const ProductDetailPage: React.FC = () => {
     }
   }, [productId]);
 
-  if (loading) return <div>Carregando...</div>;
-  if (error) return <div>Erro: {error}</div>;
-  if (!product) return <div>Produto não encontrado.</div>;
+  if (loading) return <div className="loading">Carregando...</div>;
+  if (error) return <div className="error">Erro: {error}</div>;
+  if (!product) return <div className="not-found">Produto não encontrado.</div>;
 
   return (
     <div className="product-detail-page">
-      <h2>{product.name}</h2>
-      <img src={product.photo} alt={product.name} />
-      <p>Preço: ${product.price.toFixed(2)}</p>
-      {/* Adicione mais detalhes conforme necessário */}
+      <div className="product-container">
+        <img src={product.photo} alt={product.name} className="product-image" />
+        <div className="product-info">
+          <h1 className="product-name">{product.name}</h1>
+          <h3 className="product-title">{product.description}</h3>
+          <h4 className="product-ingredients">
+            Ingredientes: {product.ingredients}
+          </h4>
+          <div className="price-container">
+            <p className="product-price">R$ {product.price}</p>
+          </div>
+        </div>
+      </div>
+      <div className="button-container">
+        <button className="add-to-cart-button">
+          Adicionar ao seu Carrinho
+        </button>
+      </div>
     </div>
   );
 };
-
 export default ProductDetailPage;

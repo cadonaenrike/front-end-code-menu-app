@@ -1,14 +1,20 @@
 export interface Product {
-  id?: string;
+  id: string;
   name: string;
-  description?: string;
+  description: string;
+  ingredients: string;
   qty: number;
   price: number;
-  photo?: string;
-  category_id?: string | null;
+  photo: string;
+  categories?: Category[];
+  categoryIds: string[];
 }
+
 export interface Category {
   id: string;
-  parent: Category[] | null;
   name: string;
+}
+
+export interface ProductCardProps {
+  product: Product;
 }

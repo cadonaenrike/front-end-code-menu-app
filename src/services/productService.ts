@@ -1,7 +1,5 @@
-// src/services/productService.ts
-
-import { Product } from "../types/Product";
 import api from "./axiosConfig";
+import { Product } from "../types/Product";
 
 export const fetchProducts = async (): Promise<Product[]> => {
   const response = await api.get("/product");
@@ -13,16 +11,16 @@ export const fetchProductById = async (id: string): Promise<Product> => {
   return response.data;
 };
 
-export const createProduct = async (product: Product): Promise<Product> => {
-  const response = await api.post("/product/", product);
+export const createProduct = async (productData: Product): Promise<Product> => {
+  const response = await api.post("/product/", productData);
   return response.data;
 };
 
 export const updateProduct = async (
   id: string,
-  product: Partial<Product>
+  productData: Partial<Product>
 ): Promise<Product> => {
-  const response = await api.patch(`/product/${id}`, product);
+  const response = await api.patch(`/product/${id}`, productData);
   return response.data;
 };
 

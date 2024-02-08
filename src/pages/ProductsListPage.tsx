@@ -1,7 +1,6 @@
-// src/pages/ProductListPage.tsx
-
 import React from "react";
 import ProductList from "../components/ProductList";
+import "../styles/index.sass";
 
 const ProductListPage: React.FC = () => {
   return (
